@@ -1,5 +1,9 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,visualstudiocode,python,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,visualstudiocode,python,node
+# Created by https://www.toptal.com/developers/gitignore/api/node,linux,macos,python,windows,visualstudiocode,direnv
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,macos,python,windows,visualstudiocode,direnv
+
+### direnv ###
+.direnv
+.envrc
 
 ### Linux ###
 *~
@@ -403,4 +407,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,visualstudiocode,python,node
+# End of https://www.toptal.com/developers/gitignore/api/node,linux,macos,python,windows,visualstudiocode,direnv

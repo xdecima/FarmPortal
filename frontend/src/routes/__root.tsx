@@ -7,6 +7,9 @@ const RootLayout = () => (
             <Link to="/" className="[&.active]:font-bold">
                 Home
             </Link>
+            <Link to="/land" className="[&.active]:font-bold">
+                Land
+            </Link>
         </div>
         <Outlet />
         <TanStackRouterDevtools />

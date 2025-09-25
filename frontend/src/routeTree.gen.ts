@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LandRouteImport } from './routes/land'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PropertyIndexRouteImport } from './routes/property/index'
+import { Route as PropertyCreateRouteImport } from './routes/property/create'
 
 const LandRoute = LandRouteImport.update({
   id: '/land',
@@ -22,31 +24,49 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PropertyIndexRoute = PropertyIndexRouteImport.update({
+  id: '/property/',
+  path: '/property/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PropertyCreateRoute = PropertyCreateRouteImport.update({
+  id: '/property/create',
+  path: '/property/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/land': typeof LandRoute
+  '/property/create': typeof PropertyCreateRoute
+  '/property': typeof PropertyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/land': typeof LandRoute
+  '/property/create': typeof PropertyCreateRoute
+  '/property': typeof PropertyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/land': typeof LandRoute
+  '/property/create': typeof PropertyCreateRoute
+  '/property/': typeof PropertyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/land'
+  fullPaths: '/' | '/land' | '/property/create' | '/property'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/land'
-  id: '__root__' | '/' | '/land'
+  to: '/' | '/land' | '/property/create' | '/property'
+  id: '__root__' | '/' | '/land' | '/property/create' | '/property/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LandRoute: typeof LandRoute
+  PropertyCreateRoute: typeof PropertyCreateRoute
+  PropertyIndexRoute: typeof PropertyIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/property/': {
+      id: '/property/'
+      path: '/property'
+      fullPath: '/property'
+      preLoaderRoute: typeof PropertyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/property/create': {
+      id: '/property/create'
+      path: '/property/create'
+      fullPath: '/property/create'
+      preLoaderRoute: typeof PropertyCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LandRoute: LandRoute,
+  PropertyCreateRoute: PropertyCreateRoute,
+  PropertyIndexRoute: PropertyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
